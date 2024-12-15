@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "tsx watch --clear-screen=false ./src/main.ts",
     "build": "tsc --build",
-    "postbuild": "cp -r ./src/api-docs ./dist/api-docs",
     "start": "node ./dist/main.js",
     "db:generate": "drizzle-kit generate",
     "db:drop": "drizzle-kit drop",
