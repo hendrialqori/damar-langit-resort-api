@@ -1,0 +1,2 @@
+ALTER TABLE `images` ADD `type_sub_menu_id` int NOT NULL;--> statement-breakpoint
+ALTER TABLE `images` ADD CONSTRAINT `images_type_sub_menu_id_type_submenu_id_fk` FOREIGN KEY (`type_sub_menu_id`) REFERENCES `type_submenu`(`id`) ON DELETE cascade ON UPDATE no action;

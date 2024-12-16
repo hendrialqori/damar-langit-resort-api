@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "6731f506-4b20-416e-8831-fa39d4c867e2",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "9d3ffa4d-a14d-4820-9749-839c1edb67b2",
+  "prevId": "16f98274-cc4e-449a-8db9-8f18fb5a1035",
   "tables": {
     "images": {
       "name": "images",
@@ -42,9 +42,9 @@
           "notNull": true,
           "autoincrement": false
         },
-        "type": {
-          "name": "type",
-          "type": "enum('NATIONAL','ARABIC')",
+        "type_sub_menu_id": {
+          "name": "type_sub_menu_id",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -59,7 +59,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "images_type_sub_menu_id_type_submenu_id_fk": {
+          "name": "images_type_sub_menu_id_type_submenu_id_fk",
+          "tableFrom": "images",
+          "tableTo": "type_submenu",
+          "columnsFrom": [
+            "type_sub_menu_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {
         "images_id": {
           "name": "images_id",

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { SQL, and, eq } from "drizzle-orm";
 import { InsertImage } from "../@types";
 import { db } from "../model/db";
-import { images as imagesTable } from "../model/schema";
+import { images as imagesTable, typeSubMenu as typeSubMenuTable } from "../model/schema";
 import type { TYPE_ENUM } from "../constant"
 import cloudinary from "../configs/cloudinary";
 import { FileUploadError, ResponseError } from "../utils/errors";
@@ -14,17 +14,31 @@ import { MySqlColumn } from "drizzle-orm/mysql-core";
 export default class ImageService {
 
     static async list(req: Request, _res: Response) {
+
+        const column = {
+            id: imagesTable.id,
+            cloudId: imagesTable.cloudId,
+            cloudUrl: imagesTable.cloudUrl,
+            menu: imagesTable.menu,
+            submenu: imagesTable.submenu,
+            type: typeSubMenuTable,
+            createdAt: imagesTable.createdAt
+        }
+
         const query = req.query as Record<"menu" | "submenu" | "type", string>
 
         const condt = [] as SQL<unknown>[]
 
         if (query.menu) condt.push(eq(imagesTable.menu, query.menu))
         if (query.submenu) condt.push(eq(imagesTable.submenu, query.submenu))
-        if (query.type) condt.push(eq(imagesTable.type, query.type as typeof TYPE_ENUM[number]))
+        if (query.type) condt.push(eq(column.type.name, query.type ))
 
         const whereClause = condt.length ? and(...condt) : undefined
 
-        const results = await db.select().from(imagesTable).where(whereClause)
+        const results = await db.select(column)
+            .from(imagesTable)
+            .where(whereClause)
+            .innerJoin(typeSubMenuTable, eq(imagesTable.typeSubMenuId, typeSubMenuTable.id))
 
         return results
 
@@ -33,7 +47,6 @@ export default class ImageService {
     static async add(req: Request, _res: Response) {
         const body = req.body as InsertImage
         const imageFile = req.file as Express.Multer.File
-        console.log(req.file)
 
         const imageRequest = Validation.validate(ImageValidation.ADD, body)
 
@@ -53,7 +66,7 @@ export default class ImageService {
             cloudUrl: url,
             menu: imageRequest.menu,
             submenu: imageRequest.submenu,
-            type: imageRequest.type
+            typeSubMenuId: imageRequest.typeSubMenuId
         }
 
         await db.insert(imagesTable).values(payload)

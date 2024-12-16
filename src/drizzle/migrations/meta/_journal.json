@@ -5,8 +5,22 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1734258483109,
-      "tag": "0000_ordinary_toxin",
+      "when": 1734359176403,
+      "tag": "0000_living_zeigeist",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1734359269177,
+      "tag": "0001_powerful_callisto",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1734359376257,
+      "tag": "0002_calm_silver_samurai",
       "breakpoints": true
     }
   ]
