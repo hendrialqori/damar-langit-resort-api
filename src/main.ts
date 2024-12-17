@@ -54,3 +54,5 @@ app.listen(PORT, () => {
     // winstonLogger.info
     console.log(`[server]: Server is running at http://localhost:${PORT}`);
 });
+
+export default app
