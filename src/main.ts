@@ -6,7 +6,6 @@ import cookieParser from "cookie-parser"
 import helmet from "helmet"
 import morgan from "morgan"
 import path from "path";
-import fs from "node:fs"
 
 import apiRouter from "./routes";
 import { errorResponse } from "./middlewares/error.middleware";
@@ -41,7 +40,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 // cookie middleware
 app.use(cookieParser())
 
-app.get("/api/ping", (req, res) => {
+app.get("/", (req, res) => {
     return res.status(200).send({ status: 200, data: new Date(), message: "PING!" })
 })
 // api router 
