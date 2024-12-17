@@ -4,7 +4,8 @@ import {
 } from 'drizzle-orm/mysql-core';
 
 const IMAGES = "images" as const
-const TYPE_SUBMENU = "type_submenu"
+const TYPE_SUBMENU = "type_submenu" as const
+const MAPS = "maps" as const
 
 export const images = mysqlTable(IMAGES, {
     id: int("id").primaryKey().autoincrement(),
@@ -20,5 +21,15 @@ export const images = mysqlTable(IMAGES, {
 export const typeSubMenu = mysqlTable(TYPE_SUBMENU, {
     id: int("id").primaryKey().autoincrement(),
     name: varchar("name", { length: 30 }).notNull(),
+    createdAt: timestamp("created_at").defaultNow()
+})
+
+export const maps = mysqlTable(MAPS, {
+    id: int("id").primaryKey().autoincrement(),
+    cloudId: varchar("cloud_id", { length: 50 }).notNull(),
+    cloudUrl: text("cloud_url").notNull(),
+    location: varchar("location", { length: 100 }).notNull(),
+    xCoordinate: int("x_coordinate"),
+    yCoordinate: int("y_coordinate"),
     createdAt: timestamp("created_at").defaultNow()
 })

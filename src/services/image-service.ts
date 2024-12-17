@@ -3,7 +3,6 @@ import { SQL, and, eq } from "drizzle-orm";
 import { InsertImage } from "../@types";
 import { db } from "../model/db";
 import { images as imagesTable, typeSubMenu as typeSubMenuTable } from "../model/schema";
-import type { TYPE_ENUM } from "../constant"
 import cloudinary from "../configs/cloudinary";
 import { FileUploadError, ResponseError } from "../utils/errors";
 import { StatusCodes } from "http-status-codes";
