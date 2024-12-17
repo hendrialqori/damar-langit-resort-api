@@ -41,6 +41,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 // cookie middleware
 app.use(cookieParser())
 
+app.get("/api/ping", (req, res) => {
+    return res.status(200).send({ status: 200, data: new Date(), message: "PING!" })
+})
 // api router 
 const VERSIONING = "v1" as const
 app.use(`/api/${VERSIONING}`, apiRouter)

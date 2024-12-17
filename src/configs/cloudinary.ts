@@ -1,9 +1,10 @@
 import { v2 as cloudinary } from 'cloudinary';
+import { CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET } from '../constant';
 
 cloudinary.config({
-    cloud_name: 'dbe2xsvgm',
-    api_key: '532414681346616',
-    api_secret: 'rfj0MHCD_K30z2GKQEzB19Q5t5I' // Click 'View API Keys' above to copy your API secret
+    cloud_name: CLOUD_NAME,
+    api_key: CLOUD_API_KEY,
+    api_secret: CLOUD_API_SECRET // Click 'View API Keys' above to copy your API secret
 });
 
 export default cloudinary
