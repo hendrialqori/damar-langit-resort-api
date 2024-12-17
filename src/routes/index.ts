@@ -1,8 +1,9 @@
 import express from 'express';
 import ImageController from '../controllers/image-controller';
-import TypeSubMenuController from '../controllers/typesubmenu-controller';
-import { upload } from '../configs/multer';
 import MapController from '../controllers/map-controller';
+import TypeSubMenuController from '../controllers/typesubmenu-controller';
+import PromoController from '../controllers/promo-controlle';
+import { upload } from '../configs/multer';
 
 const apiRouter = express.Router()
 
@@ -21,6 +22,10 @@ apiRouter.get("/map/list", MapController.list)
 apiRouter.post("/map/add", upload.single("image"), MapController.add)
 apiRouter.delete("/map/remove/:id", MapController.remove)
 
+// maps
+apiRouter.get("/promo/list", PromoController.list)
+apiRouter.post("/promo/add", upload.single("image"), PromoController.add)
+apiRouter.delete("/promo/remove/:id", PromoController.remove)
 
 export default apiRouter
 

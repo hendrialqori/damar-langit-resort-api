@@ -10,7 +10,6 @@ import { FileUploadError, ResponseError } from "../utils/errors";
 import { StatusCodes } from "http-status-codes";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
 
-
 export default class MapService {
 
     static async list(req: Request, res: Response) {
@@ -33,7 +32,7 @@ export default class MapService {
 
         const mapRequest = Validation.validate(MapValidation.ADD, body)
 
-        const PUBLIC_ID = Date.now().toString()
+        const PUBLIC_ID = `${Date.now().toString()}-${body.location}`
         const { url, public_id } = await cloudinary.uploader.upload(imageFile.path,
             {
                 public_id: PUBLIC_ID, transformation:
@@ -59,7 +58,7 @@ export default class MapService {
         const params = req.params as unknown as { id: string }
 
         const image = await this.checkMap(mapsTable.id, params.id)
-        if (!image) throw new ResponseError(StatusCodes.NOT_FOUND, "Map mage not found")
+        if (!image) throw new ResponseError(StatusCodes.NOT_FOUND, "Map image not found")
 
         await db.delete(mapsTable).where(eq(mapsTable.id, image.id))
         await cloudinary.uploader.destroy(image.cloudId.toString())

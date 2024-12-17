@@ -1,4 +1,4 @@
-import { images, typeSubMenu, maps } from "../model/schema"
+import { images, typeSubMenu, maps, promos } from "../model/schema"
 
 export type Image = typeof images.$inferSelect
 export type InsertImage = typeof images.$inferInsert
@@ -8,6 +8,9 @@ export type InsertTypeSubMenu = typeof typeSubMenu.$inferInsert;
 
 export type Map = typeof maps.$inferSelect;
 export type InsertMap = typeof maps.$inferInsert;
+
+export type Promo = typeof promos.$inferSelect;
+export type InsertPromo = typeof promos.$inferInsert
 
 export type Query = {
     page: number;

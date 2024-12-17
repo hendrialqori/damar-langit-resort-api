@@ -49,7 +49,7 @@ export default class ImageService {
 
         const imageRequest = Validation.validate(ImageValidation.ADD, body)
 
-        const PUBLIC_ID = Date.now().toString()
+        const PUBLIC_ID = `${Date.now().toString()}-${body.menu}-${body.submenu}-${body.typeSubMenuId}`
 
         const { url, public_id } = await cloudinary.uploader.upload(imageFile.path,
             {
