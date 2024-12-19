@@ -2,7 +2,6 @@ import crypto from 'node:crypto'
 import fs from "node:fs"
 import winston from 'winston';
 
-
 export const generateMD5 = (filePath: string): Promise<string> => {
     return new Promise((resolve) => {
         const hash = crypto.createHash('md5');
@@ -16,7 +15,6 @@ export const generateMD5 = (filePath: string): Promise<string> => {
         });
     })
 }
-
 
 const { combine, timestamp, prettyPrint, colorize } = winston.format;
 
